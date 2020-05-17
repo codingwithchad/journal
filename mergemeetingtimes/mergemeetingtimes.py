@@ -1,9 +1,9 @@
 import unittest
 
+
 # Sort tuples by start time
 # If start time is is less than previous end time
 # Then merge the meetings
-
 def merge_ranges(meetings):
     # Sort the meetings by start time
     # Sorting is O(n log n)
@@ -22,17 +22,13 @@ def merge_ranges(meetings):
         # Then write ever the end time with the latest end time
         # Or app the current meeting to the list
         if latest_end >= current_start:
-            merged_meetings[-1] = ((latest_start, max(current_end, latest_end)))
+            merged_meetings[-1] = (latest_start, max(current_end, latest_end))
         else:
             merged_meetings.append((current_start, current_end))
-
-
-
     return merged_meetings
 
 
 # Tests
-
 class Test(unittest.TestCase):
 
     def test_meetings_overlap(self):
