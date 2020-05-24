@@ -18,8 +18,6 @@ def merge_lists(my_list, alices_list):
         return alices_list
 
     while my_count < my_list_len and alice_count < alices_list_len:
-        if alice_count >= alices_list_len:
-            break
         if my_list[my_count] == alices_list[alice_count]:
             combine_list.append(my_list[my_count])
             alice_count +=1
@@ -75,6 +73,11 @@ class Test(unittest.TestCase):
     def test_lists_second_longer(self):
         actual = merge_lists( [1, 7], [2, 4, 6, 8])
         expected = [1, 2, 4, 6, 7, 8]
+        self.assertEqual(actual, expected)
+
+    def test_lists_duplicates(self):
+        actual = merge_lists( [1, 7, 9, 11], [2, 4, 7, 9])
+        expected = [1, 2, 4, 7, 9, 11]
         self.assertEqual(actual, expected)
 
 
