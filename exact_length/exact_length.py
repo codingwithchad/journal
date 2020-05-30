@@ -1,25 +1,18 @@
 import unittest
 
 
-def can_two_movies_fill_flight(movie_lengths, flight_length):
+def can_two_movies_fill_flight(movie_len, flight_length):
 
     # Determine if two movie runtimes add up to the flight length
-    if len(movie_lengths) <= 0 or len(movie_lengths) == 1:
+    if len(movie_len) <= 0 or len(movie_len) == 1:
         return False
+    prev_movies = set()
 
-    target = flight_length - movie_lengths[0]
-    next_first_movie = 1
-
-    while next_first_movie < len(movie_lengths):
-        for t in range(next_first_movie, len(movie_lengths)):
-            if movie_lengths[t] == target:
-                return True
-        target = flight_length - movie_lengths[next_first_movie]
-        next_first_movie += 1
-
-
-
-    print("not found\n")
+    for f_movie_length in movie_len:
+        s_movie_length = flight_length - f_movie_length
+        if s_movie_length in prev_movies:
+            return True
+        prev_movies.add(f_movie_length)
     return False
 
 
