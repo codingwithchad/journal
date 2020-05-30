@@ -13,12 +13,9 @@ def has_palindrome_permutation(the_string):
             letters_set.remove(char)
         else:
             letters_set.add(char)
-    if string_length % 2 == 0:
-        if len(letters_set) == 0:
-            return True
-        return False
-    if len(letters_set) == 1:
+    if len(letters_set) == 0 or len(letters_set == 1):
         return True
+
     return False
 
 
