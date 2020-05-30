@@ -2,12 +2,23 @@ import unittest
 
 
 def has_palindrome_permutation(the_string):
+    string_length = len(the_string)
 
     # Check if any permutation of the input is a palindrome
-    if len(the_string) <=1:
+    if string_length <= 1:
         return True
-
-
+    letters_set = set()
+    for char in the_string:
+        if char in letters_set:
+            letters_set.remove(char)
+        else:
+            letters_set.add(char)
+    if string_length % 2 == 0:
+        if len(letters_set) == 0:
+            return True
+        return False
+    if len(letters_set) == 1:
+        return True
     return False
 
 
