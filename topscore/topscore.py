@@ -56,5 +56,10 @@ class Test(unittest.TestCase):
         expected = [30, 30, 20, 20, 10, 10]
         self.assertEqual(actual, expected)
 
+    def test_repeated_longer_scores(self):
+        actual = sort_scores([20, 98, 10, 30, 30, 10, 20, 98, 12, 99, 32, 47, 95, 12, 1, 95, 95, 95, 13], 100)
+        expected = [99, 98, 98, 95, 95, 95, 95, 47, 32, 30, 30, 20, 20, 13, 12, 12, 10, 10, 1]
+        self.assertEqual(actual, expected)
+
 
 unittest.main(verbosity=2)
