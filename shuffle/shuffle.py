@@ -6,11 +6,16 @@ def get_random(floor, ceiling):
 
 
 def shuffle(the_list):
-
     # Shuffle the input in place
 
+    for it in range(len(the_list)):
+        temp = the_list[it]
+        rando = get_random(0, len(the_list))
+        the_list[it] = the_list[rando]
+        the_list[rando] = temp
 
-    pass
+
+
 
 
 sample_list = [1, 2, 3, 4, 5]
