@@ -25,7 +25,7 @@ class Test(unittest.TestCase):
         expected = 4
         self.assertEqual(actual, expected)
 
-    def test_price_goes_down_then_up(self):
+    def testparentheticals_price_goes_down_then_up(self):
         actual = get_max_profit([7, 2, 8, 9])
         expected = 7
         self.assertEqual(actual, expected)
