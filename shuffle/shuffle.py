@@ -7,12 +7,21 @@ def get_random(floor, ceiling):
 
 def shuffle(the_list):
     # Shuffle the input in place
+    new_list = [0] * len(the_list)
+    mangled_list = the_list.copy()
+    num = get_random(0, len(the_list) -1 )
+    new_list[num] = mangled_list[num]
+    mangled_list[num] = None
 
-    for it in range(len(the_list)):
-        temp = the_list[it]
-        rando = get_random(0, len(the_list))
-        the_list[it] = the_list[rando]
-        the_list[rando] = temp
+    for it in range(len(the_list) - 1):
+        num = get_random(0, len(the_list) - 1)
+        while mangled_list[num] is None:
+            num = get_random(0, len(the_list) - 1)
+        if num is not None:
+            new_list[num] = mangled_list[num]
+        mangled_list[num] = None
+    the_list = new_list.copy()
+
 
 
 
