@@ -8,14 +8,14 @@ def get_closing_paren(sentence, opening_paren_index):
     # ()()((()()))', 5
     # Find the position of the matching closing parenthesis
     count = 0
-    for position in range(opening_paren_index + 1, len(sentence)):
-        char = sentence[position]
+    for pos in range(opening_paren_index + 1, len(sentence)):
+        char = sentence[pos]
 
         if char == '(':
             count += 1
         elif char == ')':
             if count == 0:
-                return position
+                return pos
             count -= 1
 
     raise Exception
