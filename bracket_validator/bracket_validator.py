@@ -1,28 +1,48 @@
 import unittest
 
+OPENERS = ['[', '{', '(']
+CLOSERS = [']', '}', ')']
+
+
+def is_open_bracket(char):
+    if char in OPENERS:
+        return True
+    return False
+
+def is_closed_bracket(char):
+    if char in CLOSERS:
+        return True
+    return False
+
+
+def check_match(opener, bracket):
+    if opener == OPENERS[0] and bracket != CLOSERS[0]:
+        return False
+    elif opener == OPENERS[1] and bracket != CLOSERS[1]:
+        return False
+    elif opener == OPENERS[2] and bracket != CLOSERS[2]:
+        return False
+    return True
+
 
 def is_valid(code):
 
     # Determine if the input code is valid
+    stack = []
+    for bracket in code:
+        if is_open_bracket(bracket):
+            stack.append(bracket)
+        elif is_closed_bracket(bracket):
+            try:
+                opener = stack.pop()
+            except IndexError as e:
+                return False
+            if not check_match(opener, bracket):
+                return False
 
-
-    return False
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    if len(stack) > 0:
+        return False
+    return True
 
 
 # Tests
