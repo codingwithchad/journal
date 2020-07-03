@@ -1,21 +1,36 @@
 import unittest
 
-
+# Return the kth to last node in the linked list
 def kth_to_last_node(k, head):
+    # Raise a value error if k is less than 1.
+    if k < 1:
+        raise ValueError('k needs to be greater than 1')
 
-    # Return the kth to last node in the linked list
-    count = 0
-    current = head
-    linked_list_list = []
-    while current:
-        linked_list_list.append(current)
-        current = current.next
-        count += 1
+    # Create a left and right node, so measure the distance to the end.
+    left_node = head
+    right_node = head
 
-    if k > count:
-        raise Exception
+    # Move the right_node to k nodes away from left_node
+    for _ in range(k-1):
 
-    return linked_list_list[count - k]
+        # If k is greater than the length of the list, we will raise an error here.
+        if not right_node.next:
+            raise ValueError('we fell off the right edge of the list')
+        right_node = right_node.next
+
+    # With the left node starting at head
+    # Move the right node and left node together
+    # Until there is no more right_node.next.
+    # Then the left node is k from the end
+    while right_node.next:
+        right_node = right_node.next
+        left_node = left_node.next
+
+    # if there is no right_node.next,
+    # Left node will be at the kth node. 
+    return left_node
+
+
 
 
 
