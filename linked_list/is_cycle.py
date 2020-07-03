@@ -11,7 +11,7 @@ def contains_cycle(first_node):
     fast_node = first_node.next
     if slow_node == fast_node:
         return True
-    while fast_node.next:
+    while fast_node is not None and fast_node.next is not None:
         fast_node = fast_node.next.next
         slow_node = slow_node.next
 
