@@ -4,13 +4,29 @@ import unittest
 def find_rotation_point(words):
 
     # Find the rotation point in the list
-    count = 0
-    for w in range(len(words)):
-        if words[w-1] > words[w]:
-            return count
-        count += 1
 
-    return -1
+    floor_index = 0
+    floor_word = words[floor_index]
+    ceiling_index = len(words) - 1
+    mid = 1
+    if words[mid - 1] > words[mid]:
+        return mid
+
+
+
+    while floor_index < ceiling_index:
+
+        guess_index = floor_index + ((ceiling_index - floor_index) // 2)
+
+        if words[guess_index] >= floor_word:
+            floor_index = guess_index
+        else:
+            ceiling_index = guess_index
+
+        if floor_index + 1 == ceiling_index:
+            return ceiling_index
+
+    return 0
 
 
 
