@@ -8,16 +8,10 @@ def find_rotation_point(words):
     floor_index = 0
     floor_word = words[floor_index]
     ceiling_index = len(words) - 1
-    mid = 1
-    if words[mid - 1] > words[mid]:
-        return mid
-
-
 
     while floor_index < ceiling_index:
 
         guess_index = floor_index + ((ceiling_index - floor_index) // 2)
-
         if words[guess_index] >= floor_word:
             floor_index = guess_index
         else:
