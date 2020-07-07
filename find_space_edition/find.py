@@ -3,44 +3,33 @@ import unittest
 def find_repeat(numbers):
 
     # Find a number that appears more than once
-    if len(numbers) > 1:
-        mid = len(numbers) // 2
-        left = numbers[:mid]
-        right = numbers[mid:]
+    floor = 1
+    ceiling = len(numbers) - 1
 
-        find_repeat(left)
-        find_repeat(right)
+    while floor < ceiling:
 
-        i, j, k = 0, 0, 0
+        mid = floor + ((ceiling - floor) // 2)
+        left_floor, left_ceiling = floor, mid
+        right_floor, right_ceiling = mid + 1, ceiling
 
-        while i < len(left) and j < len(right):
-            if left[i] == right[j]:
-                return left[i]
-            if left[i] < right[j]:
-                numbers[k] = left[i]
-                # move the iterator forward
-                i += 1
-            else:
-                numbers[k] = right[j]
-                j += 1
-            k += 1
+        left_range = 0
+        for item in numbers:
+            if item >= left_floor and item <= left_ceiling:
+                left_range += 1
 
-            while i < len(left):
-                numbers[k] = left[i]
-                i += 1
-                k += 1
+        items_in_left = (left_ceiling - left_floor + 1)
 
-            while j < len(right):
-                numbers[k] = right[j]
-                j += 1
-                k += 1
-                
-    for n in range(len(numbers) - 1):
-        if numbers[n] == numbers[n+1]:
-            return numbers[n]
+        if left_range > items_in_left:
+            # There must be a duplicate in the left range
+            # So use the same approach iteratibely on that range
+            floor, ceiling = left_floor, left_ceiling
+        else:
+            # There must be a duplicate in the right range
+            floor, ceiling = right_floor, right_ceiling
 
-
-    return 0
+    # floor and ceiling have converged
+    # We found a number that repeats
+    return floor
 
 
 
@@ -79,9 +68,11 @@ class Test(unittest.TestCase):
         self.assertEqual(actual, expected)
 
     def test_long_list(self):
-        actual = find_repeat([4, 1, 4, 8, 3, 2, 7, 6, 5])
+        actual = find_repeat([4, 1, 8, 3, 2, 4, 7, 6, 5])
         expected = 4
         self.assertEqual(actual, expected)
+
+
 
 
 unittest.main(verbosity=2)
