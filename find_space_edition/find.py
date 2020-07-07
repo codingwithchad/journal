@@ -1,16 +1,44 @@
 import unittest
 
-
 def find_repeat(numbers):
 
     # Find a number that appears more than once
-    nSet = set()
+    if len(numbers) > 1:
+        mid = len(numbers) // 2
+        left = numbers[:mid]
+        right = numbers[mid:]
 
-    for n in numbers:
-        if n in nSet:
-            return n
-        else:
-            nSet.add(n)
+        find_repeat(left)
+        find_repeat(right)
+
+        i, j, k = 0, 0, 0
+
+        while i < len(left) and j < len(right):
+            if left[i] == right[j]:
+                return left[i]
+            if left[i] < right[j]:
+                numbers[k] = left[i]
+                # move the iterator forward
+                i += 1
+            else:
+                numbers[k] = right[j]
+                j += 1
+            k += 1
+
+            while i < len(left):
+                numbers[k] = left[i]
+                i += 1
+                k += 1
+
+            while j < len(right):
+                numbers[k] = right[j]
+                j += 1
+                k += 1
+                
+    for n in range(len(numbers) - 1):
+        if numbers[n] == numbers[n+1]:
+            return numbers[n]
+
 
     return 0
 
