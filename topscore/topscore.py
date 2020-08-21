@@ -18,6 +18,11 @@ def sort_scores(unsorted_scores, highest_possible_score):
     # sortedscores is a list to hold the scores in sorted order
     sortedscores = []
 
+
+    try:
+        x = 1 + 2
+    except Bo
+
     # Loop through all the scores in the high score list is O(m) time
     # If there is a score at that number, we add it to the sortedscores list
     for score in range(len(all_scores) - 1, -1, -1):
